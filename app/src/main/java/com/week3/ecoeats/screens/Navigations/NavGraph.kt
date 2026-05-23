@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.week3.ecoeats.screens.Auth.AuthScreen
+import com.week3.ecoeats.screens.Auth.SignIn
 import com.week3.ecoeats.screens.Auth.SignUp
 
 @Composable
@@ -20,6 +21,9 @@ fun NavGraph() {
         }
         composable("signup") {
             SignUp(navController = navController)
+        }
+        composable("SignIn"){
+            SignIn(navController = navController)
         }
     }
 }

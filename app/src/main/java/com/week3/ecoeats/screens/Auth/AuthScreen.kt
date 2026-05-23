@@ -30,6 +30,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.week3.ecoeats.ui.theme.CharcoalBrown
 import com.week3.ecoeats.ui.theme.Cornsilk
 import com.week3.ecoeats.ui.theme.LaurelGreen
@@ -68,7 +69,7 @@ fun WelcomeText() {
 @Composable
 fun ButtonDaftar(navController: NavController) {
     Button(
-        onClick = {navController.navigate("signup")},
+        onClick = { navController.navigate("signup") },
         modifier = Modifier
             .fillMaxWidth()
             .height(56.dp),
@@ -85,9 +86,9 @@ fun ButtonDaftar(navController: NavController) {
 }
 
 @Composable
-fun ButtonMasuk() {
+fun ButtonMasuk(navController: NavController) {
     Button(
-        onClick = {},
+        onClick = { navController.navigate("SignIn") },
         modifier = Modifier
             .fillMaxWidth()
             .height(54.dp),
@@ -114,15 +115,15 @@ fun BottomSheet(navController: NavController, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier= Modifier.height(42.dp))
+        Spacer(modifier = Modifier.height(42.dp))
         WelcomeText()
 
         Column(
             modifier = Modifier.fillMaxWidth()
         ) {
-            ButtonDaftar(navController=navController)
+            ButtonDaftar(navController = navController)
             Spacer(modifier = Modifier.height(36.dp))
-            ButtonMasuk()
+            ButtonMasuk(navController = navController)
             Spacer(modifier = Modifier.height(48.dp))
         }
     }

@@ -47,7 +47,7 @@ import androidx.navigation.NavController
 
 
 @Composable
-fun SignUp(navController: NavController, modifier: Modifier = Modifier) {
+fun SignIn(navController: NavController,modifier: Modifier = Modifier) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -57,23 +57,22 @@ fun SignUp(navController: NavController, modifier: Modifier = Modifier) {
             .background(Cornsilk)
     ) {
         MainImage()
-        BottomLayer(
+        BottomLayerSignIn(
             email = email,
             onEmailChange = { email = it },
             password = password,
             onPasswordChange = { password = it },
-            navController = navController,
             modifier = Modifier
-                .fillMaxHeight(0.62f)
+                .fillMaxHeight (0.62f)
                 .align(Alignment.BottomCenter)
         )
     }
 }
 
 @Composable
-fun headline() {
+fun HeadlineSignIn() {
     Text(
-        text = "DAFTAR",
+        text = "MASUK",
         color = DarkOliveGreen,
         fontSize = 22.sp,
         fontWeight = FontWeight.Bold,
@@ -83,7 +82,7 @@ fun headline() {
 }
 
 @Composable
-fun FieldEmail(value: String, onValueChange: (String) -> Unit) {
+fun FieldEmailSignIn(value: String, onValueChange: (String) -> Unit) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
@@ -96,7 +95,7 @@ fun FieldEmail(value: String, onValueChange: (String) -> Unit) {
 }
 
 @Composable
-fun FieldPassword(value: String, onValueChange: (String) -> Unit) {
+fun FieldPasswordSignIn(value: String, onValueChange: (String) -> Unit) {
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
@@ -110,12 +109,11 @@ fun FieldPassword(value: String, onValueChange: (String) -> Unit) {
 }
 
 @Composable
-fun BottomLayer(
+fun BottomLayerSignIn(
     email: String,
     onEmailChange: (String) -> Unit,
     password: String,
     onPasswordChange: (String) -> Unit,
-    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -128,29 +126,24 @@ fun BottomLayer(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(16.dp))
-        headline()
+        HeadlineSignIn()
 
         Column(modifier = Modifier.fillMaxWidth()) {
-            FieldEmail(value = email, onValueChange = onEmailChange)
+            FieldEmailSignIn(value = email, onValueChange = onEmailChange)
             Spacer(modifier = Modifier.height(32.dp))
-            FieldPassword(value = password, onValueChange = onPasswordChange)
+            FieldPasswordSignIn(value = password, onValueChange = onPasswordChange)
             Spacer(modifier = Modifier.height(90.dp))
             Button(
-                onClick = {
-                    navController.navigate("SignIn") {
-                        popUpTo("signup") { inclusive = true }
-                    }
-                },
+                onClick = {},
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
                 shape = MaterialTheme.shapes.large,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = DarkOliveGreen,
-                    contentColor = white
-                )
+                    contentColor = white)
             ) {
-                Text(text = "Daftar")
+                Text(text = "Masuk")
             }
         }
     }
