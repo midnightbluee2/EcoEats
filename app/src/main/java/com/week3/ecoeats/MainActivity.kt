@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.week3.ecoeats.screens.Auth.AuthScreen
 import com.week3.ecoeats.ui.theme.EcoEatsTheme
+import com.week3.ecoeats.screens.Navigations.NavGraph
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,14 +21,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             EcoEatsTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    AuthScreen(modifier = Modifier.padding(innerPadding))
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                 )
+               NavGraph()
                 }
             }
         }
     }
-}

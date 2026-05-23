@@ -23,66 +23,40 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.week3.ecoeats.ui.theme.DarkOliveGreen
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import com.week3.ecoeats.R
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.draw.clip
+import androidx.navigation.NavController
 import com.week3.ecoeats.ui.theme.CharcoalBrown
 import com.week3.ecoeats.ui.theme.Cornsilk
 import com.week3.ecoeats.ui.theme.LaurelGreen
 import com.week3.ecoeats.ui.theme.white
+import com.week3.ecoeats.screens.components.MainImage
 
 @Composable
-fun AuthScreen(modifier: Modifier = Modifier){
+fun AuthScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(Cornsilk)
-    ){
-        Image(
-            painter = painterResource(R.drawable.gambar1),
-            contentDescription = "Gambar awal",
-            contentScale = ContentScale.Crop,
+    ) {
+        MainImage()
+        BottomSheet(
+            navController = navController,
             modifier = Modifier
-                .fillMaxWidth()
-                .height(280.dp)
-                //.padding(16.dp)
-        )
-        Spacer(modifier= Modifier.height(10.dp))
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                //.weight(1f)
-                .clip(
-                    RoundedCornerShape(
-                        topStart = 32.dp,
-                        topEnd = 32.dp
-                    )
-                )
-                .background(Cornsilk)
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .fillMaxHeight(0.55f)
+                .fillMaxHeight(0.62f)
                 .align(Alignment.BottomCenter)
-                .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp))
-                .padding(horizontal = 32.dp)
-        ) {
-            WelcomeText()
-            Spacer(modifier = Modifier.height(50.dp))
-            ButtonDaftar()
-            Spacer(modifier = Modifier.height(50.dp))
-            ButtonMasuk()
-            Spacer(modifier = Modifier.height(50.dp))
-        }
+        )
     }
 }
+
 @Composable
-fun WelcomeText(){
+fun WelcomeText() {
     Text(
-        text="SELAMAT DATANG DI ECOEATS!",
+        text = "SELAMAT DATANG DI ECOEATS!",
         color = DarkOliveGreen,
         fontSize = 22.sp,
         fontWeight = FontWeight.Bold,
@@ -90,11 +64,14 @@ fun WelcomeText(){
         lineHeight = 32.sp
     )
 }
+
 @Composable
-fun ButtonDaftar(){
+fun ButtonDaftar(navController: NavController) {
     Button(
-        onClick = {},
-        modifier = Modifier.fillMaxWidth(),
+        onClick = {navController.navigate("signup")},
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(56.dp),
         shape = MaterialTheme.shapes.large,
         colors = ButtonDefaults.buttonColors(
             containerColor = DarkOliveGreen,
@@ -108,10 +85,12 @@ fun ButtonDaftar(){
 }
 
 @Composable
-fun ButtonMasuk(){
+fun ButtonMasuk() {
     Button(
         onClick = {},
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(54.dp),
         shape = MaterialTheme.shapes.large,
         colors = ButtonDefaults.buttonColors(
             containerColor = DarkOliveGreen,
@@ -121,5 +100,30 @@ fun ButtonMasuk(){
         Text(
             text = "MASUK"
         )
+    }
+}
+
+@Composable
+fun BottomSheet(navController: NavController, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(topStart = 32.dp, topEnd = 32.dp))
+            .background(Cornsilk)
+            .padding(horizontal = 32.dp, vertical = 40.dp),
+        verticalArrangement = Arrangement.SpaceBetween,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Spacer(modifier= Modifier.height(42.dp))
+        WelcomeText()
+
+        Column(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            ButtonDaftar(navController=navController)
+            Spacer(modifier = Modifier.height(36.dp))
+            ButtonMasuk()
+            Spacer(modifier = Modifier.height(48.dp))
+        }
     }
 }

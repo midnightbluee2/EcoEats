@@ -45,7 +45,7 @@ private val LightColorScheme = lightColorScheme(
 private val EcoEatsShapes = Shapes(
     small = RoundedCornerShape(size = 30.dp),
     medium = RoundedCornerShape(size = 40.dp),
-    large = RoundedCornerShape(size = 50.dp),
+    large = RoundedCornerShape(size = 90.dp),
 )
 
 //private val poppinsFont = GoogleFont("Poppins")
